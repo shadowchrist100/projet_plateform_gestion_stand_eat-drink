@@ -1,23 +1,18 @@
-<header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="logo">
-            <a href="/">
-                <!-- Remplacez par votre logo -->
-                <span class="text-2xl font-bold text-primary">Eat&Drink</span>
-            </a>
-        </div>
-        
-        <nav class="hidden md:flex space-x-8">
-            <a href="#" class="text-gray-700 hover:text-primary font-medium">Nos Exposants</a>
-            <a href="#" class="text-gray-700 hover:text-primary font-medium">Se connecter</a>
-            <a href="#" class="text-gray-700 hover:text-primary font-medium">S'inscrire</a>
-        </nav>
-        
-        <div class="flex items-center space-x-4">
-            <a href="#" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark font-medium">S'inscrire</a>
-            <button class=" text-gray-700">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-    </div>
+
+<header>
+     <div class="navbar bg-base-100 shadow-md px-6">
+  <!-- Partie gauche : logo + nom -->
+  <div class="navbar-start flex items-center gap-2">
+    <i data-lucide="store" class="w-6 h-6 text-orange-500"></i>
+    <a class="text-2xl font-bold text-neutral">Eat&Drink</a>
+  </div>
+
+  <!-- Partie droite : liens de navigation -->
+  <div class="navbar-end hidden md:flex gap-6">
+    <a class="btn btn-ghost text-base font-medium" routerLink="/exposants">Nos Exposants</a>
+    <a class="btn btn-ghost text-base font-medium" routerLink="/produits">Se connecter</a>
+    <a class="btn btn-ghost text-base font-medium  btn-signin" routerLink="/contact">S'inscrire</a>
+  </div>
+</div>
+
 </header>
