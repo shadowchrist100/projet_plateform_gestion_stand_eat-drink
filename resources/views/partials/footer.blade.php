@@ -9,9 +9,9 @@
             <div>
                 <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
                 <ul class="space-y-2">
-                <a href="#" class="text-gray-700 hover:text-primary font-medium">Nos Exposants</a><br>
-                <a href="#" class="text-gray-700 hover:text-primary font-medium">Se connecter</a><br>
-                <a href="#" class="text-gray-700 hover:text-primary font-medium">S'inscrire</a><br>
+                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Nos Exposants</a></li>
+                    <li><a href="{{ route('login') }}" class="text-gray-400 hover:text-primary transition-colors">Se connecter</a></li>
+                    <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary transition-colors">S'inscrire</a></li>
                 </ul>
             </div>
             
@@ -33,10 +33,10 @@
                     </button>
                 </form>
                 <div class="flex space-x-4 mt-4 text-xl">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="hover:text-primary"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-primary"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-primary"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-primary"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>

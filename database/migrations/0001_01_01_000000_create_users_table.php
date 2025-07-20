@@ -13,10 +13,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('nom_complet');
             $table->string('nom_entreprise');
+            $table->string('type_activite');
             $table->string('email')->unique();
+            $table->string('telephone')->nullable();
+            $table->text('description_activite');
             $table->string('password');
-            $table->string('role');
+            $table->enum('role', ['admin', 'entrepreneur_en_attente', 'entrepreneur_approuve']) ->default('entrepreneur_en_attente');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->timestamp('approved_at')->nullable();
+            $table->text('approval_notes')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

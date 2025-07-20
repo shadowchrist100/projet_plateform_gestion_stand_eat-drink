@@ -17,11 +17,54 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+ protected $fillable = [
+    'nom_complet',
+    'nom_entreprise',
+    'type_activite',
+    'email',
+    'telephone',
+    'description_activite',
+    'password',
+    'role',
+    'status',
+    'approved_at',
+    'approval_notes'
+];
+
+// Méthodes d'état
+public function isPending()
+{
+    return $this->status === 'pending' && $this->role === 'entrepreneur_en_attente';
+}
+
+public function isApproved()
+{
+    return $this->status === 'approved' && $this->role === 'entrepreneur_approuve';
+}
+
+public function isRejected()
+{
+    return $this->status === 'rejected';
+}
+
+// Méthodes de transition
+public function approve(string $notes = null)
+{
+    $this->update([
+        'role' => 'entrepreneur_approuve',
+        'status' => 'approved',
+        'approved_at' => now(),
+        'approval_notes' => $notes
+    ]);
+}
+
+public function reject(string $notes = null)
+{
+    $this->update([
+        'status' => 'rejected',
+        'approval_notes' => $notes
+    ]);
+}
 
     /**
      * The attributes that should be hidden for serialization.

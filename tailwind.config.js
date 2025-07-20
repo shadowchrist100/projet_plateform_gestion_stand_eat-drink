@@ -1,13 +1,21 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-     "./resources/**/*.blade.php",
+    "./resources/**/*.blade.php",
     "./resources/**/*.js",
-    "./resources/**/*.vue",
+    "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Instrument Sans', 'ui-sans-serif', 'system-ui'],
+      },
+      transitionTimingFunction: {
+        'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      }
+    },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('daisyui'),
+  ],
 }
-
