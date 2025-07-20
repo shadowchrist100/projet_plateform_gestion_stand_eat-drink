@@ -27,8 +27,8 @@
 
     @include('partials.footer')
     <script>
-    lucide.createIcons();
-</script>
+        lucide.createIcons();
+    </script>
 
 </body>
 </html>
