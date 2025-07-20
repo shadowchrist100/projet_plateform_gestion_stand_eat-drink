@@ -51,7 +51,7 @@
   <!-- Lien vers l'inscription -->
   <div class="text-center mt-6">
     <p class="text-gray-600">Pas encore de compte ? 
-      <a href="view-register" class="text-primary hover:underline font-medium">
+      <a href="register" class="text-primary hover:underline font-medium">
         S'inscrire comme exposant
       </a>
     </p>

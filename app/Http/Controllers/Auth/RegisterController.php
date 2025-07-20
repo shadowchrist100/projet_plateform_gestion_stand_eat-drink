@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -61,7 +62,7 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
-        auth()->login($user);
+        Auth::login($user);
 
         return redirect()->route('pending-approval');
     }

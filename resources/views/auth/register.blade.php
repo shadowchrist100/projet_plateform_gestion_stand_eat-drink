@@ -91,7 +91,7 @@
   </form>
 
   <div class="text-center mt-6">
-    <p>Déjà inscrit ? <a href="view-login" class="text-primary hover:underline">Se connecter</a></p>
+    <p>Déjà inscrit ? <a href="login" class="text-primary hover:underline">Se connecter</a></p>
   </div>
 </div>
 @endsection
