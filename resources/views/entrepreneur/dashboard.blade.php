@@ -37,6 +37,7 @@
                     <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Approuvé</span>
                 </div>
                 <div class="text-3xl font-bold text-green-600 mt-4">Actif</div>
+                
                 <div class="text-gray-400 text-sm">Stand approuvé</div>
             </div>
         </div>
