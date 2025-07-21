@@ -9,7 +9,7 @@
             <div>
                 <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Nos Exposants</a></li>
+                    <li><a href="{{ route('exposants.index') }}" class="text-gray-400 hover:text-primary transition-colors">Nos Exposants</a></li>
                     <li><a href="{{ route('login') }}" class="text-gray-400 hover:text-primary transition-colors">Se connecter</a></li>
                     <li><a href="{{ route('register') }}" class="text-gray-400 hover:text-primary transition-colors">S'inscrire</a></li>
                 </ul>

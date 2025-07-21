@@ -14,12 +14,16 @@ return new class extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('description');
-            $table->float('prix');
-            $table->string('image_url');
-             // Clé étrangère vers la table stands
+            $table->text('description');
+            $table->decimal('prix', 8, 2); // Meilleur pour les valeurs monétaires
+            $table->string('image_url')->nullable();
             $table->unsignedBigInteger('stand_id');
-            $table->foreign('stand_id')->references('id')->on('stands')->onDelete('cascade');
+            $table->timestamps();
+            
+            $table->foreign('stand_id')
+                ->references('id')
+                ->on('stands')
+                ->onDelete('cascade');
         });
     }
 

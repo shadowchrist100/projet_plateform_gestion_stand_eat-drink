@@ -10,7 +10,7 @@
 
   <!-- Partie droite : liens de navigation -->
   <div class="navbar-end hidden md:flex gap-6">
-    <a class="btn btn-ghost text-base font-medium" routerLink="/exposants">Nos Exposants</a>
+    <a class="btn btn-ghost text-base font-medium" href="{{ route('exposants.index') }}">Nos Exposants</a>
     <a href={{ route('login') }} class="btn btn-ghost text-base font-medium" >Se connecter</a>
     <a href={{ route('register') }} class="btn btn-ghost text-base font-medium  btn-signin">S'inscrire</a>
   </div>

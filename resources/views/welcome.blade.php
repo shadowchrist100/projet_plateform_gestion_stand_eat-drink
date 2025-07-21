@@ -9,7 +9,7 @@
             <h1 class="font-bold text-gray-900 text-5xl mb-6" >Bienvenue à l'événement <span class="text-orange-600" >Eat&Drink</span></h1>
             <p class="text-xl text-gray-700 mb-8 max-w-2xl ml-22" >Découvrez les meilleurs artisans et restaurateurs de la région. Goûtez, achetez et vivez une expérience culinaire unique.</p>
             <div class="flex justify-center gap-4" >
-                <a class="bg-orange-600 btn text-white btn-xs sm:btn-sm md:btn-md lg:btn-md xl:btn-md" href="#">Découvrir nos Exposants</a>
+                <a class="bg-orange-600 btn text-white btn-xs sm:btn-sm md:btn-md lg:btn-md xl:btn-md" href="{{ route('exposants.index') }}">Découvrir nos Exposants</a>
                 <a class="btn btn-outline border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-6 py-3 rounded-lg transition-colors" href="{{ route('register') }}">Devenir Exposant</a>
             </div>
         </div>
