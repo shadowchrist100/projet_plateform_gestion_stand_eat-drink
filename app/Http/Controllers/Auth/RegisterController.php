@@ -61,7 +61,7 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
-        auth()->login($user);
+       
 
         return redirect()->route('pending-approval');
     }
