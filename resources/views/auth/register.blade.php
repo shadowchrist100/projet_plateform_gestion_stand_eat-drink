@@ -3,8 +3,12 @@
 @section('title', 'Demande de Stand')
 
 @section('content')
-<div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-  <h1 class="text-2xl font-bold text-center mb-6">Demande de Stand</h1>
+<div class="max-w-2xl w-full border border-base-200 bg-base-100 text-base-content p-8 rounded-lg shadow-md">
+  <div class="flex flex-col space-y-1.5 p-6 text-center ">
+    <div class="flex justify-center mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store-icon lucide-store text-orange-500"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
+    </div>
+    <h1 class="text-2xl font-bold text-center mb-6">Demande de Stand</h1>
   <p class="text-center mb-8">Inscrivez-vous pour devenir exposant à l'événement Eat&Drink</p>
 
   <form method="POST" action="{{ route('register') }}" class="space-y-6">
@@ -93,5 +97,7 @@
   <div class="text-center mt-6">
     <p>Déjà inscrit ? <a href="view-login" class="text-primary hover:underline">Se connecter</a></p>
   </div>
+  </div>
+  
 </div>
 @endsection

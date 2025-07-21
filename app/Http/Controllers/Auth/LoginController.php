@@ -12,4 +12,17 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    /**
+     * Valider les données de connexion
+     */
+    protected function validator(array $data)
+    {
+        
+    }
+
+    public function login(Request $request)
+    {
+
+    }
+
 }
