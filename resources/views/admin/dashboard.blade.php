@@ -10,27 +10,219 @@
         <script src="https://unpkg.com/lucide@latest"></script>
     </head>
     <body>
-        <div class="min-h-screen bg-to-gradient-to ">
+        <div class="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 ">
             <header>
-            <div class="navbar bg-base-100 shadow-md px-6">
-                <!-- Partie gauche : logo + nom -->
-                <div class="navbar-start flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store-icon lucide-store text-orange-500"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
-                    <a class="text-2xl font-bold text-neutral">Eat&Drink - Admin</a>
+                <div class="navbar bg-base-100 shadow-md px-6">
+                    <!-- Partie gauche : logo + nom -->
+                    <div class="navbar-start flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store-icon lucide-store text-orange-500"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
+                        <a class="text-2xl font-bold text-neutral">Eat&Drink - Admin</a>
+                    </div>
+                    <!-- Partie droite : liens de navigation -->
+                    <div class="navbar-end hidden md:flex gap-6">
+                        <p>
+                            Bienvenue,Administrateur
+                        </p>
+                        <a class="btn btn-ghost text-base font-medium  btn-signin" routerLink="/contact">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+                            Déconnexion
+                        </a>
+                    </div>
                 </div>
-                <!-- Partie droite : liens de navigation -->
-                <div class="navbar-end hidden md:flex gap-6">
-                    <p>
-                        Bienvenue,Administrateur
+            </header>
+            <div class="container mx-auto px-4 py-8">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Tableau de bord Admin</h2>
+                    <p class="text-gray-600">
+                        Gérer les demandes de stands et les exposants
                     </p>
-                    <a class="btn btn-ghost text-base font-medium  btn-signin" routerLink="/contact">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
-                        Déconnexion
-                    </a>
                 </div>
             </div>
-        </header>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <!-- Carte En attente -->
+                <div class="card bg-base-100 border border-base-200 shadow-sm">
+                    <div class="card-body p-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-medium">En attente</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500">
+                                <path d="M12 6v6l4 2"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                    <div class="mt-2">
+                        <div class="text-2xl font-bold text-orange-600">3</div>
+                            <p class="text-xs text-base-content/70">demandes à traiter</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte Approuvées -->
+                <div class="card bg-base-100 border border-base-200 shadow-sm">
+                    <div class="card-body p-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-medium">Approuvées</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500">
+                                <path d="M20 6 9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <div class="mt-2">
+                            <div class="text-2xl font-bold text-green-600">0</div>
+                            <p class="text-xs text-base-content/70">stands actifs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte Rejetées -->
+                <div class="card bg-base-100 border border-base-200 shadow-sm">
+                    <div class="card-body p-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-medium">Rejetées</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500">
+                                <path d="M18 6 6 18"/>
+                                <path d="m6 6 12 12"/>
+                            </svg>
+                        </div>
+                        <div class="mt-2">
+                            <div class="text-2xl font-bold text-red-600">0</div>
+                            <p class="text-xs text-base-content/70">demandes refusées</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte Total -->
+                <div class="card bg-base-100 border border-base-200 shadow-sm">
+                    <div class="card-body p-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm font-medium">Total</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <path d="M16 3.128a4 4 0 0 1 0 7.744"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <circle cx="9" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="mt-2">
+                            <div class="text-2xl font-bold text-blue-600">3</div>
+                            <p class="text-xs text-base-content/70">demandes totales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-lg bg-base-100 border-b border-base-200 shadow-sm mb-8">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                        Demandes en attente d'approbation
+                    </h3>
+                    <p class="text-sm text-base-content/70">gérer les nouvelles demandes de stand des entrepreneurs</p>
+                </div>
+                <div class="p-6 pt-0">
+                    <div class="relative w-full overflow-auto">
+                        <table class="w-full caption-bottom text-sm">
+                            <thead class="">
+                                <tr class="bg-base-100 border-b border-base-200">
+                                    <th class="h-12 px-4 text-left align-middle font-medium ">Entrepreneur</th>
+                                    <th class="h-12 px-4 text-left align-middle font-medium ">Entreprise</th>
+                                    <th class="h-12 px-4 text-left align-middle font-medium ">Type</th>
+                                    <th class="h-12 px-4 text-left align-middle font-medium ">Date</th>
+                                    <th class="h-12 px-4 text-left align-middle font-medium ">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                <tr class="bg-base-100 border-b border-base-200">
+                                    <td class="">
+                                        <div>
+                                            <div class="font-medium">
+                                                Marc Dubois
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                mar@charcuteri.com
+                                            </div>
+                                        <div>
+                                    </td>
+                                    <td class="p-4 align-middle ">
+                                            Charcuterie Dubois
+                                    </td>
+                                    <td class="p-4 align-middle ">
+                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-offset-2">
+                                            charcuterie
+                                        </div>
+                                    </td>
+                                    <td class="p-4 align-middle ">
+                                        2024-02-16
+                                    </td>
+                                    <td class="p-4 align-middle ">
+                                        <div class="flex space-x-2">
+                                            <button class="btn btn-ghost btn-sm p-2  hover:text-info hover:bg-info/10">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                                            </button>
+                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent h-9 rounded-md px-3 text-green-600 hover:text-green-700">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                            </button>
+                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent g-accent h-9 rounded-md px-3 text-red-600 hover:text-red-700">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                        <div>
+                                            <div class="font-medium">
+                                                Marc Dubois
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                mar@charcuteri.com
+                                            </div>
+                                        <div>
+                                    </td>
+                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                            Charcuterie Dubois
+                                    </td>
+                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-offset-2">
+                                            charcuterie
+                                        </div>
+                                    </td>
+                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                        2024-02-16
+                                    </td>
+                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                        <div class="flex space-x-2">
+                                            <button class="inline-flex items-center justify-center gap-2 whitespace-now:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                                            </button>
+                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent h-9 rounded-md px-3 text-green-600 hover:text-green-700">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                            </button>
+                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent g-accent h-9 rounded-md px-3 text-red-600 hover:text-red-700">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check text-green-500"><path d="M20 6 9 17l-5-5"/></svg>
+                        Exposants approuvées
+                    </h3>
+                    <p class="text-sm text-muted-foreground">
+                        Liste des stands actifs sur la plateforme
+                    </p>
+                </div>
+                <div class="p-6 pt-0">
+                    <p class="text-center text-gray-500 py-8">
+                        Aucun exposant approuvé
+                    </p>
+                </div>
+            </div>
         </div>
-        
     </body>
 </html>
