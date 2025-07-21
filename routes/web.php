@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ExposantController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Entrepreneur\ProduitController;
 
 Route::get('/', function () {
@@ -40,7 +40,6 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, '
 Route::get('/entrepreneur',function(){
     return view('entrepreneur.dashboard');
 });
-
 // Routes exposants simplifiées
 Route::prefix('exposants')->group(function() {
     // Liste des exposants avec recherche intégrée

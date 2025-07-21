@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-<<<<<<< HEAD
             $table->text('description');
             $table->decimal('prix', 8, 2); // Meilleur pour les valeurs monétaires
             $table->string('image_url')->nullable();
@@ -25,13 +24,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('stands')
                 ->onDelete('cascade');
-=======
             $table->text('description')->nullable();
             $table->decimal('prix', 8, 2);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
->>>>>>> 6c352c589d551d335b27734674aabc02469f6d26
         });
     }
 
