@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -12,17 +15,20 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Valider les données de connexion
-     */
-    protected function validator(array $data)
-    {
-        
-    }
-
     public function login(Request $request)
     {
-
+        $validated=$request->validate([
+            'email'=>['required','exists:users,email','email'],
+            'password'=>['required',Password::min(8)]
+        ]);
+        if (Auth::attempt($validated)) 
+        {
+            return redirect()->route('pending-approval');
+        }
+        else
+        {
+            dd("Erreur");
+        }
     }
 
 }
