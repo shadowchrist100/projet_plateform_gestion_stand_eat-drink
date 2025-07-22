@@ -6,6 +6,7 @@ use App\Http\Controllers\ExposantController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Entrepreneur\ProduitController;
+use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,15 +28,15 @@ Route::controller(RegisterController::class)->group(function() {
 Route::post('/logout', [LoginController::class, 'logout'])
      ->name('logout');
 
-Route::get('/admin',function(){
-    return view('admin.dashboard');
-});
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::get('/admin', [DashboardController::class, 'dashboard']);
 
-Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+
+// Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+// Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
 Route::get('/entrepreneur',function(){
     return view('entrepreneur.dashboard');
@@ -50,9 +51,6 @@ Route::prefix('exposants')->group(function() {
     Route::get('/{id}', [ExposantController::class, 'show'])
          ->name('exposants.show');
 });
-Route::get('/entrepreneur/dashboard', [App\Http\Controllers\Entrepreneur\DashboardController::class, 'index'])
-    ->middleware('auth')
-    ->name('entrepreneur.dashboard');
 
 Route::resource('produits', ProduitController::class);
 

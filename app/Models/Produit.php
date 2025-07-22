@@ -12,7 +12,8 @@ class Produit extends Model
         'description',
         'prix',
         'image_url',
-        'stand_id'
+        'stand_id',
+        'user_id'
     ];
 
     public function stand(): BelongsTo
