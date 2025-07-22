@@ -25,7 +25,6 @@
                     <div class="col-md-4 mb-4">
                         <article class="card h-100">
                             <div class="card-header d-flex align-items-center">
-                                <span class="badge bg-primary me-2">{{ chr(65 + $index) }}</span>
                                 <h2 class="h5 mb-0">{{ $exposant->nom_entreprise }}</h2>
                             </div>
                             

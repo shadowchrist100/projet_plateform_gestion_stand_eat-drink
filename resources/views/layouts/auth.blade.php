@@ -7,8 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body {
-            background-color: #f8fafc;
-            background-image: url('/images/auth-bg.jpg');
+            background-image: url('/images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
         }

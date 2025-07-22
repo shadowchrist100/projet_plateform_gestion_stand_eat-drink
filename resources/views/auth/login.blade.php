@@ -3,58 +3,60 @@
 @section('title', 'Connexion')
 
 @section('content')
-<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-  <div class="text-center mb-8">
-    <h1 class="text-2xl font-bold text-primary mb-2">Connexion</h1>
-    <p class="text-gray-600">Connectez-vous à votre compte Eat&Drink</p>
-  </div>
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
 
-  <form method="POST" action="{{ route('login') }}" class="space-y-6">
-    @csrf
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-primary mb-2">Connexion</h1>
+      <p class="text-gray-500">Connectez-vous à votre compte Eat&Drink</p>
+    </div>
 
-    <!-- Champ Email -->
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text">Email</span>
-      </label>
-      <input type="email" name="email" value="{{ old('email') }}" 
-             class="input input-bordered w-full @error('email') input-error @enderror">
-      @error('email')
+    <form method="POST" action="{{ route('login') }}" class="space-y-5">
+      @csrf
+
+      <!-- Email -->
+      <div class="form-control">
         <label class="label">
-          <span class="label-text-alt text-error">{{ $message }}</span>
+          <span class="label-text">Adresse e-mail</span>
         </label>
-      @enderror
-    </div>
-
-    <!-- Champ Mot de passe -->
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text">Mot de passe</span>
-      </label>
-      <input type="password" name="password" 
-             class="input input-bordered w-full @error('password') input-error @enderror">
-      @error('password')
+        <input type="email" name="email" value="{{ old('email') }}" 
+               class="input input-bordered w-full @error('email') input-error @enderror">
+        @error('email')
+          <label class="label">
+            <span class="label-text-alt text-error">{{ $message }}</span>
+          </label>
+        @enderror
+      </div>
+      <!-- Password -->
+      <div class="form-control">
         <label class="label">
-          <span class="label-text-alt text-error">{{ $message }}</span>
+          <span class="label-text">Mot de passe</span>
         </label>
-      @enderror
+        <input type="password" name="password" 
+               class="input input-bordered w-full @error('password') input-error @enderror">
+        @error('password')
+          <label class="label">
+            <span class="label-text-alt text-error">{{ $message }}</span>
+          </label>
+        @enderror
+      </div>
+      <!-- Submit -->
+      <div class="pt-2">
+        <button type="submit" class="btn btn-primary w-full">
+          Se connecter
+        </button>
+      </div>
+    </form>
+
+    <!-- Inscription -->
+    <div class="text-center mt-6 text-sm">
+      <p class="text-gray-600">Pas encore de compte ? 
+        <a href="{{ route('register') }}" class="text-secondary font-semibold hover:underline">
+          S'inscrire comme exposant
+        </a>
+      </p>
     </div>
 
-    <!-- Bouton de connexion -->
-    <div class="pt-2">
-      <button type="submit" class="btn btn-primary w-full">
-        Se connecter
-      </button>
-    </div>
-  </form>
-
-  <!-- Lien vers l'inscription -->
-  <div class="text-center mt-6">
-    <p class="text-gray-600">Pas encore de compte ? 
-      <a href="view-register" class="text-primary hover:underline font-medium">
-        S'inscrire comme exposant
-      </a>
-    </p>
   </div>
 </div>
 @endsection

@@ -1,20 +1,29 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./resources/**/*.blade.php",
-    "./resources/**/*.js",
-    "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php"
+    './resources/**/*.blade.php',
+    './resources/**/*.js',
+    './resources/**/*.vue',
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Instrument Sans', 'ui-sans-serif', 'system-ui'],
-      },
-      transitionTimingFunction: {
-        'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
-      }
-    },
+    extend: {},
   },
-  plugins: [
-    require('daisyui'),
-  ],
-}
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          "primary": "#D97706",      // orange foncé
+          "secondary": "#FACC15",    // jaune
+          "accent": "#34D399",       // vert clair
+          "neutral": "#3D4451",
+          "base-100": "#FFFFFF",
+          "info": "#3ABFF8",
+          "success": "#36D399",
+          "warning": "#FBBD23",
+          "error": "#F87272",
+        },
+      },
+    ],
+  },
+};
