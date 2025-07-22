@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Notifications\WelcomeNotification;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,11 +58,9 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-
         $user = $this->create($request->all());
-
-       
-
+        // Envoi de la notification de bienvenue
+        $user->notify(new WelcomeNotification());
         return redirect()->route('pending-approval');
     }
 }
