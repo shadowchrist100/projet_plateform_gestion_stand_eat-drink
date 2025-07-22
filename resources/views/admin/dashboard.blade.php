@@ -112,7 +112,7 @@
             <div class="rounded-lg bg-base-100 border-b border-base-200 shadow-sm mb-8">
                 <div class="flex flex-col space-y-1.5 p-6">
                     <h3 class="text-2xl font-semibold flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock text-orange-500"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
                         Demandes en attente d'approbation
                     </h3>
                     <p class="text-sm text-base-content/70">gérer les nouvelles demandes de stand des entrepreneurs</p>
@@ -130,84 +130,56 @@
                                 </tr>
                             </thead>
                             <tbody class="">
-                                <tr class="bg-base-100 border-b border-base-200">
-                                    <td class="">
-                                        <div>
-                                            <div class="font-medium">
-                                                Marc Dubois
+                                @forelse ($unapproved as $user)
+                                    <tr class="border-b border-base-200 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                            <div>
+                                                <div class="font-medium">
+                                                    {{ $user->nom_complet }}
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    {{ $user->email }}
+                                                </div>
+                                            <div>
+                                        </td>
+                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                {{ $user->nom_entreprise }}
+                                        </td>
+                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                            <div class="inline-flex items-center rounded-full border-b border-base-200 px-2.5 py-0.5 focus:ring-offset-2">
+                                                {{ $user->type_activite }}
                                             </div>
-                                            <div class="text-sm text-gray-500">
-                                                mar@charcuteri.com
+                                        </td>
+                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                            {{ $user->created_at->format('Y-m-d') }}
+                                        </td>
+                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                            <div class="flex space-x-2">
+                                                <button class="inline-flex items-center justify-center gap-2 whitespace-now:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                                                </button>
+                                                <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent h-9 rounded-md px-3 text-green-600 hover:text-green-700">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                                </button>
+                                                <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent g-accent h-9 rounded-md px-3 text-red-600 hover:text-red-700">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                                </button>
                                             </div>
-                                        <div>
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                            Charcuterie Dubois
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-offset-2">
-                                            charcuterie
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                        2024-02-16
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="flex space-x-2">
-                                            <button class="btn btn-ghost btn-sm p-2  hover:text-info hover:bg-info/10">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent h-9 rounded-md px-3 text-green-600 hover:text-green-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent g-accent h-9 rounded-md px-3 text-red-600 hover:text-red-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        <div>
-                                            <div class="font-medium">
-                                                Marc Dubois
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                mar@charcuteri.com
-                                            </div>
-                                        <div>
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                            Charcuterie Dubois
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-offset-2">
-                                            charcuterie
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        2024-02-16
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        <div class="flex space-x-2">
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-now:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent h-9 rounded-md px-3 text-green-600 hover:text-green-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent g-accent h-9 rounded-md px-3 text-red-600 hover:text-red-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @empty
+                                     <div class="p-6 pt-0">
+                                        <p class="text-center text-gray-500 py-8">
+                                            Aucune demande en attente
+                                        </p>
+                                    </div>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="rounded-lg border-b border-base-200 bg-card text-card-foreground shadow-sm">
                 <div class="flex flex-col space-y-1.5 p-6">
                     <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check text-green-500"><path d="M20 6 9 17l-5-5"/></svg>
@@ -218,6 +190,60 @@
                     </p>
                 </div>
                 <div class="p-6 pt-0">
+                    @isset($approved)
+                        <div class="relative w-full overflow-auto">
+                            <table class="w-full caption-button text-sm">
+                                <thead class="[&_tr]:border-b">
+                                    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Entrepreneur
+                                        </th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Entreprise
+                                        </th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Type
+                                        </th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Statut
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="[&_tr:last-child]:border-0">
+                                    @forelse ($approved as $user )
+                                        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div>
+                                                    <div class="font-medium">
+
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-ring focus:ring-offset-2 text-foreground">
+
+                                                </div>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 transparent bg-secondary hover:bg-secondary/80 text-green-600">
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        
+                                    @endforelse
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    @endisset 
                     <p class="text-center text-gray-500 py-8">
                         Aucun exposant approuvé
                     </p>
