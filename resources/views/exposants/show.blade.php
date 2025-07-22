@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.exp_head')
 
-@section('content')
+@section('contentE')
 <div class="exposant-show py-5">
     <div class="container">
         <!-- En-tête de l'exposant -->

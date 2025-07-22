@@ -37,7 +37,7 @@ class ProduitController extends Controller
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
-            'user_id' => Auth::id(), // Assure-toi que l'utilisateur est connecté
+            // 'user_id' => Auth::id(), // 
         ]);
 
         return redirect()->route('entrepreneur.dashboard')->with('success', 'Produit ajouté avec succès !');

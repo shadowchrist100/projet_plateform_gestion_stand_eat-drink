@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.exp_head')
 
-@section('content')
+@section('contentE')
 <div class="exposants-page">
     <section class="hero-section py-5 bg-light">
         <div class="container">
