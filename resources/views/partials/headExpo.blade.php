@@ -10,8 +10,8 @@
 
     <!-- Menu et actions -->
     <div class="flex items-center space-x-6">
-        <a href="#" class="text-lg font-medium text-black hover:text-orange-500">Accueil</a>
-        <button class="px-5 py-2 border border-gray-300 rounded-lg font-medium text-black hover:bg-gray-100 transition">Se connecter</button>
+        <a href="./" class="text-lg font-medium text-black hover:text-orange-500">Accueil</a>
+        <a href="/login"><button  class="px-5 py-2 border border-gray-300 rounded-lg font-medium text-black hover:bg-gray-100 transition">Se connecter</button></a>
         <div class="relative">
             <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <circle cx="9" cy="21" r="1" />
