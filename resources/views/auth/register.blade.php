@@ -12,12 +12,6 @@
     </div>
     <h1 class="text-2xl font-bold text-center mb-6">Demande de Stand</h1>
   <p class="text-center mb-8">Inscrivez-vous pour devenir exposant à l'événement Eat&Drink</p>
-
-    <div class="text-center mb-8">
-      <h1 class="text-3xl font-bold text-primary">Demande de Stand</h1>
-      <p class="text-gray-500 mt-2">Inscrivez-vous pour devenir exposant à l'événement Eat&Drink</p>
-    </div>
-
     <form method="POST" action="{{ route('register') }}" class="space-y-6">
       @csrf
 
