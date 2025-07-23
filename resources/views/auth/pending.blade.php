@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.headPending')
 
-@section('content')
-<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+@section('contentP')
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow" style="margin-top: 4cm; box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.12);">
     <div class="text-center">
         <svg class="mx-auto h-12 w-12 text-yellow-500" ...></svg>
         <h2 class="mt-3 text-lg font-medium">Votre compte est en attente d'approbation</h2>
