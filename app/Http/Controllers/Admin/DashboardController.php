@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
     public function dashboard()
     {
+        if (Gate::denies('access-admin')) {
+            abort(403, 'Accès refusé');
+        }
         $unapproved=$this->get_unapproved_users();
         $approved=$this->get_approved_users();
         return view('admin.dashboard',[
