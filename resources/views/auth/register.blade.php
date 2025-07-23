@@ -21,32 +21,32 @@
 
       <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <label class="block font-semibold mb-1 text-gray-900" for="nom_complet">Nom complet *</label>
-          <input type="text" name="nom_complet" id="nom_complet" class="input w-full bg-white border border-gray-300" placeholder="Jean Dupont" required>
+          <label class="block font-semibold mb-1 text-black" for="nom_complet">Nom complet *</label>
+          <input type="text" name="nom_complet" id="nom_complet" class="input w-full text-black bg-white border border-gray-300" placeholder="Jean Dupont" required>
         </div>
         <div>
-          <label class="block font-semibold mb-1 text-gray-900" for="email">Email *</label>
-          <input type="email" name="email" id="email" class="input w-full bg-white border border-gray-300" placeholder="jean@exemple.com" required>
+          <label class="block font-semibold mb-1 text-black-900" for="email">Email *</label>
+          <input type="email" name="email" id="email" class="input w-full bg-white border border-gray-300 text-black" placeholder="jean@exemple.com" required>
         </div>
         <div>
           <label class="block font-semibold mb-1 text-gray-900" for="password">Mot de passe *</label>
-          <input type="password" name="password" id="password" class="input w-full bg-white border border-gray-300" placeholder="Minimum 8 caractères" required>
+          <input type="password" name="password" id="password" class="input w-full bg-white border border-gray-300 text-black" placeholder="Minimum 8 caractères" required>
         </div>
         <div>
           <label class="block font-semibold mb-1 text-gray-900" for="password_confirmation">Confirmer le mot de passe *</label>
-          <input type="password" name="password_confirmation" id="password_confirmation" class="input w-full bg-white border border-gray-300" placeholder="Répétez le mot de passe" required>
+          <input type="password" name="password_confirmation" id="password_confirmation" class="input w-full bg-white border text-black border-gray-300" placeholder="Répétez le mot de passe" required>
         </div>
         <div>
           <label class="block font-semibold mb-1 text-gray-900" for="nom_entreprise">Nom de l'entreprise *</label>
-          <input type="text" name="nom_entreprise" id="nom_entreprise" class="input w-full bg-white border border-gray-300" placeholder="La Boulangerie du Coin" required>
+          <input type="text" name="nom_entreprise" id="nom_entreprise" class="input w-full bg-white border border-gray-300 text-black" placeholder="La Boulangerie du Coin" required>
         </div>
         <div>
           <label class="block font-semibold mb-1 text-gray-900" for="type_activite">Type d'activité *</label>
-          <input type="text" name="type_activite" id="type_activite" class="input w-full bg-white border border-gray-300" placeholder="Boulangerie, Restaurant, Artisan..." required>
+          <input type="text" name="type_activite" id="type_activite" class="input w-full bg-white border border-gray-300 text-black" placeholder="Boulangerie, Restaurant, Artisan..." required>
         </div>
         <div class="md:col-span-2">
           <label class="block font-semibold mb-1 text-gray-900" for="telephone">Téléphone</label>
-          <input type="tel" name="telephone" id="telephone" class="input w-full bg-white border border-gray-300" placeholder="01 23 45 67 89">
+          <input type="tel" name="telephone" id="telephone" class="input w-full bg-white border border-gray-300 text-black" placeholder="01 23 45 67 89">
         </div>
       </div>
 
