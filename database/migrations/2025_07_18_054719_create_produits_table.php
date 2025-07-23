@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->text('description');
-            $table->decimal('prix', 8, 2); // Meilleur pour les valeurs monétaires
+            $table->decimal('prix', 12, 2); // Meilleur pour les valeurs monétaires
             $table->string('image_url')->nullable();
             $table->unsignedBigInteger('stand_id');
             $table->unsignedBigInteger('user_id')->nullable();

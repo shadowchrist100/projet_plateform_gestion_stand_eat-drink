@@ -67,15 +67,31 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($produits->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center text-gray-400">Aucun produit trouvé.</td>
+                            </tr>
+                        @endif
                         @foreach($produits as $produit)
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="py-3 font-semibold"> {{ $produit->nom }} </td>
                                 <td class="py-3">{{ $produit->description }}</td>
                                 <td class="py-3">{{ $produit->prix }}</td>
                                 <td class="py-3">
+                                    @if($produit->image_url)
+                                        <img src="{{ asset('storage/' . $produit->image_url) }}" alt="Image du produit" class="h-16 w-16 object-cover rounded" />
+                                    @else
+                                        <span class="text-gray-400 italic">Aucune image</span>
+                                    @endif
+                                </td>
+                                <td class="py-3">
                                     <div class="flex space-x-2">
-                                        <button>modifier</button>
-                                        <button>supprimer</button>
+                                        <a href="{{ route('produits.edit', $produit->id) }}" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Modifier</a>
+                                        <form action="{{ route('produits.destroy', $produit->id) }}" method="POST" class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">Supprimer</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -102,7 +118,7 @@
                 </button>
                 <h3 class="text-xl font-bold mb-1">Ajouter un nouveau produit</h3>
                 <p class="text-gray-400 mb-6">Remplissez les informations du produit ci-dessous.</p>
-                <form method="POST" action="{{ route('produits.store') }}">
+                <form method="POST" action="{{ route('produits.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label class="block font-semibold mb-1" for="nom">Nom du produit</label>
@@ -116,6 +132,10 @@
                         <label class="block font-semibold mb-1" for="prix">Prix (€)</label>
                         <input type="number" step="0.01" name="prix" id="prix" required class="w-full border border-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300">
                     </div>
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-1" for="image">Image du produit</label>
+                        <input type="file" name="image" id="image" accept="image/*" class="w-full border border-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                    </div>
                     <div class="flex justify-end space-x-2">
                         <button type="button" id="cancelModalBtn" class="px-4 py-2 rounded bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200">Annuler</button>
                         <button type="submit" class="px-4 py-2 rounded bg-gray-900 text-white font-semibold hover:bg-gray-700">Ajouter</button>
@@ -125,6 +145,27 @@
         </div>
         
         <!-- Fin modale -->
+
+        <!-- Modale de confirmation de suppression -->
+        <div
+            id="modalDeleteProduit"
+            style="display: none; background: rgba(0,0,0,0.5);"
+            class="fixed inset-0 z-50 flex items-center justify-center"
+        >
+            <div class="bg-white rounded-xl shadow-lg w-full max-w-lg p-8 relative">
+                <button id="closeDeleteModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <h3 class="text-xl font-bold mb-1">Confirmation</h3>
+                <p class="text-gray-400 mb-6">Voulez-vous vraiment supprimer ce produit&nbsp;?</p>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" id="cancelDeleteBtn" class="px-4 py-2 rounded bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200">Annuler</button>
+                    <button type="button" id="confirmDeleteBtn" class="px-4 py-2 rounded bg-red-500 text-white font-semibold hover:bg-red-600">Supprimer</button>
+                </div>
+            </div>
+        </div>
     </main>
 </div>
 @endsection
@@ -152,6 +193,46 @@
         window.addEventListener('click', function (e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
+            }
+        });
+
+        let formToDelete = null;
+        const modalDelete = document.getElementById('modalDeleteProduit');
+        const closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
+        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+        // Pour chaque formulaire de suppression
+        document.querySelectorAll('.delete-form').forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                formToDelete = form;
+                modalDelete.style.display = 'flex';
+            });
+        });
+
+        closeDeleteModalBtn.addEventListener('click', function () {
+            modalDelete.style.display = 'none';
+            formToDelete = null;
+        });
+
+        cancelDeleteBtn.addEventListener('click', function () {
+            modalDelete.style.display = 'none';
+            formToDelete = null;
+        });
+
+        confirmDeleteBtn.addEventListener('click', function () {
+            if (formToDelete) {
+                modalDelete.style.display = 'none';
+                formToDelete.submit();
+            }
+        });
+
+        // Fermer la modale si on clique à l'extérieur
+        window.addEventListener('click', function (e) {
+            if (e.target === modalDelete) {
+                modalDelete.style.display = 'none';
+                formToDelete = null;
             }
         });
     });

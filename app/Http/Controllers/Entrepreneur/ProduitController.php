@@ -10,17 +10,28 @@ use Illuminate\Support\Facades\Auth;
 class ProduitController extends Controller
 {
     // Affiche la liste des produits de l'entrepreneur connecté
-    // public function index()
-    // {
-    //     $user = Auth::user();
-    //     $produits = Produit::where('user_id', $user->id)->get();
+    public function index()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Veuillez vous connecter.');
+        }
+        // Récupère les produits liés à l'utilisateur connecté
+        $produits = Produit::where('user_id', $user->id)->get();
+        $totalProduits = $produits->count();
+        $prixMoyen = $totalProduits > 0 ? $produits->avg('prix') : 0;
 
-    //     return view('entrepreneur.produits.index', compact('produits'));
-    // }
+        return view('entrepreneur.dashboard', [
+            'user' => $user,
+            'produits' => $produits,
+            'totalProduits' => $totalProduits,
+            'prixMoyen' => $prixMoyen,
+        ]);
+    }
 
     public function listProduits(){
-        // $produits = Produit::where('user_id', $user->id)->get(); //Un long commentaire
-        $produits = Produit::all();
+        $user = Auth::user();
+        $produits = Produit::where('user_id', $user->id)->get();
         $totalProduits = $produits->count();
         $prixMoyen = $totalProduits > 0 ? $produits->avg('prix') : 0;
        return view('entrepreneur.dashboard', compact('produits','totalProduits','prixMoyen'));  
@@ -35,15 +46,19 @@ class ProduitController extends Controller
     // Enregistre un nouveau produit
     public function store(Request $request)
     {
-        $stand_id = 2;
-        $user_id = 2;
+        $user = Auth::user();
+        $user_id = $user->id;
+        $stand_id = $user->stand_id ?? null;
+
+        if (!$stand_id) {
+            return redirect()->back()->with('error', 'Vous devez d\'abord créer un stand avant d\'ajouter un produit.');
+        }
         
         $request->validate([
             'nom' => 'required',
             'description' => 'nullable',
-            'prix' => 'required|numeric',
-            // 'image_url' => 'nullable|image|max:2048', // max 2Mo
-             'stand_id'=> 'required'
+            'prix' => 'required|numeric|min:0|max:9999999999.99',
+            'image' => 'nullable|image|max:2048', // max 2Mo
         ]);
 
         $imagePath = null;
@@ -55,9 +70,9 @@ class ProduitController extends Controller
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
-            // 'image_url' => $imagePath,
-            'user_id' => $user_id, // si besoin
-              'stand_id' => $stand_id
+            'image_url' => $imagePath,
+            'user_id' => $user_id,
+            'stand_id' => $stand_id
         ]);
 
         return redirect()->route('entrepreneur.dashboard')->with('success', 'Produit ajouté avec succès !');
@@ -84,12 +99,19 @@ class ProduitController extends Controller
             'nom' => 'required|string|max:255',
             'description' => 'nullable|string',
             'prix' => 'required|numeric|min:0',
+            'image_url' => 'nullable|image|max:2048',
         ]);
+
+        $imagePath = $produit->image_url;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('produits', 'public');
+        }
 
         $produit->update([
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
+            'image_url' => $imagePath,
         ]);
 
         return redirect()->route('entrepreneur.dashboard')->with('success', 'Produit modifié avec succès !');

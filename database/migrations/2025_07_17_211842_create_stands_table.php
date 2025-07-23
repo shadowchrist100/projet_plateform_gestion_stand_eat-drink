@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom_stand');
             $table->text('description'); // Utilisez text plutôt que string pour les descriptions longues
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps(); // N'oubliez pas les timestamps
             

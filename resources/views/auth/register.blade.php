@@ -16,7 +16,7 @@
     </div>
     <h1 class="text-2xl font-bold text-center mb-2 text-gray-900">Demande de Stand</h1>
     <p class="text-center mb-8 text-gray-900">Inscrivez-vous pour devenir exposant à l'événement Eat&Drink</p>
-    <form method="POST" action="{{ route('register') }}" class="space-y-6">
+    <form method="POST" action="{{ route('register') }}" class="space-y-6" enctype="multipart/form-data">
       @csrf
 
       <div class="grid md:grid-cols-2 gap-4">
@@ -43,6 +43,10 @@
         <div>
           <label class="block font-semibold mb-1 text-gray-900" for="type_activite">Type d'activité *</label>
           <input type="text" name="type_activite" id="type_activite" class="input w-full bg-white border border-gray-300 text-black" placeholder="Boulangerie, Restaurant, Artisan..." required>
+        </div>
+        <div>
+          <label class="block font-semibold mb-1 text-gray-900" for="stand_image">Image du stand</label>
+          <input type="file" name="stand_image" id="stand_image" accept="image/*" class="input w-full bg-white border border-gray-300 text-black">
         </div>
         <div class="md:col-span-2">
           <label class="block font-semibold mb-1 text-gray-900" for="telephone">Téléphone</label>

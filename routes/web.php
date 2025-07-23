@@ -41,6 +41,9 @@ Route::post('/unapproved/{id}',[DashboardController::class, 'Admin\DashboardCont
 // Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
 Route::get('/entrepreneur', [ProduitController::class, 'listProduits']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/entrepreneur/dashboard', [ProduitController::class, 'index'])->name('entrepreneur.dashboard');
+});
 
 // Route::get('/entrepreneur', function () {
 //     return view('entrepreneur.dashboard');
@@ -69,4 +72,6 @@ Route::post('/logout', function () {
 Route::get('/auth/pending', function () {
     return view('auth.pending');
 })->name('pending-approval');
+
+Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 

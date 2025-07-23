@@ -31,6 +31,7 @@ class RegisterController extends Controller
             'type_activite' => ['required', 'string'],
             'description_activite' => ['required', 'string'],
             'telephone' => ['nullable', 'string'],
+            'stand_image' => ['nullable', 'image', 'max:2048'], // Added validation for image
         ]);
     }
 
@@ -48,7 +49,8 @@ class RegisterController extends Controller
             'telephone' => $data['telephone'] ?? null,
             'description_activite' => $data['description_activite'],
             'role' => 'entrepreneur_en_attente',
-            'status' => 'pending'
+            'status' => 'pending',
+            'image' => $data['stand_image'] ?? null,
         ]);
     }
 
@@ -58,7 +60,20 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        $user = $this->create($request->all());
+
+        // Gère l'upload ici
+        if ($request->hasFile('stand_image')) {
+            $standImagePath = $request->file('stand_image')->store('stands', 'public');
+        } else {
+            $standImagePath = null;
+        }
+
+        // Passe le chemin de l'image à create()
+        $user = $this->create(array_merge(
+            $request->all(),
+            ['stand_image' => $standImagePath]
+        ));
+
         // Envoi de la notification de bienvenue
         $user->notify(new WelcomeNotification());
         return redirect()->route('pending-approval');
