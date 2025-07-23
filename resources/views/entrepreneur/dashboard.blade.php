@@ -1,0 +1,240 @@
+@extends('layouts.dash_head')
+
+@section('contentd')
+<div class="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+    <!-- Header -->
+    
+
+
+    <!-- Main -->
+    <main class="max-w-6xl mx-auto py-10 px-4">
+        <h1 class="text-4xl font-bold mb-2">Tableau de bord</h1>
+        <p class="text-gray-500 mb-8">Gérez vos produits et votre stand</p>
+
+        <!-- Statistiques -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white rounded-xl shadow p-6 flex flex-col">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-500 font-medium">Total Produits</span>
+                    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V7a2 2 0 00-2-2H6a2 2 0 00-2 2v6m16 0v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0H4"/>
+                    </svg>
+                </div>
+                <div class="text-3xl font-bold mt-4"> {{ $totalProduits }} </div>
+                <div class="text-gray-400 text-sm">produits disponibles</div>
+            </div>
+            <div class="bg-white rounded-xl shadow p-6 flex flex-col">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-500 font-medium">Prix Moyen</span>
+                    <span class="text-gray-300 text-xl font-bold">franc CFA</span>
+                </div>
+                <div class="text-3xl font-bold mt-4"> {{$prixMoyen }} franc CFA</div>
+                <div class="text-gray-400 text-sm">par produit</div>
+            </div>
+            <div class="bg-white rounded-xl shadow p-6 flex flex-col">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-500 font-medium">Statut</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Approuvé</span>
+                </div>
+                <div class="text-3xl font-bold text-green-600 mt-4">Actif</div>
+                
+                <div class="text-gray-400 text-sm">Stand approuvé</div>
+            </div>
+        </div>
+
+        <!-- Tableau des produits -->
+        <div class="bg-white rounded-xl shadow p-8">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Mes Produits</h2>
+                    <p class="text-gray-500">Gérez les produits de votre stand</p>
+                </div>
+                <button id="openModalBtn" type="button" class="flex items-center bg-gray-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 transition">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Ajouter un produit
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="text-left text-gray-500 border-b">
+                            <th class="py-3">Produit</th>
+                            <th class="py-3">Description</th>
+                            <th class="py-3">Prix</th>
+                            <th class="py-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if($produits->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center text-gray-400">Aucun produit trouvé.</td>
+                            </tr>
+                        @endif
+                        @foreach($produits as $produit)
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-3 font-semibold"> {{ $produit->nom }} </td>
+                                <td class="py-3">{{ $produit->description }}</td>
+                                <td class="py-3">{{ $produit->prix }}</td>
+                                <td class="py-3">
+                                    @if($produit->image_url)
+                                        <img src="{{ asset('storage/' . $produit->image_url) }}" alt="Image du produit" class="h-16 w-16 object-cover rounded" />
+                                    @else
+                                        <span class="text-gray-400 italic">Aucune image</span>
+                                    @endif
+                                </td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <a href="{{ route('produits.edit', $produit->id) }}" class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Modifier</a>
+                                        <form action="{{ route('produits.destroy', $produit->id) }}" method="POST" class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition">Supprimer</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modale d'ajout de produit -->
+        <div
+            id="modalAjoutProduit"
+            style="display: none; background: rgba(0,0,0,0.5);"
+            class="fixed inset-0 z-50 flex items-center justify-center"
+        >
+            <div
+                class="bg-white rounded-xl shadow-lg w-full max-w-lg p-8 relative"
+            >
+                <!-- Bouton fermer -->
+                <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <h3 class="text-xl font-bold mb-1">Ajouter un nouveau produit</h3>
+                <p class="text-gray-400 mb-6">Remplissez les informations du produit ci-dessous.</p>
+                <form method="POST" action="{{ route('produits.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-1" for="nom">Nom du produit</label>
+                        <input type="text" name="nom" id="nom" required class="w-full border border-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-1" for="description">Description</label>
+                        <textarea name="description" id="description" rows="3" class="w-full border border-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300"></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block font-semibold mb-1" for="prix">Prix (€)</label>
+                        <input type="number" step="0.01" name="prix" id="prix" required class="w-full border border-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block font-semibold mb-1" for="image">Image du produit</label>
+                        <input type="file" name="image" id="image" accept="image/*" class="w-full border border-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300">
+                    </div>
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" id="cancelModalBtn" class="px-4 py-2 rounded bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200">Annuler</button>
+                        <button type="submit" class="px-4 py-2 rounded bg-gray-900 text-white font-semibold hover:bg-gray-700">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Fin modale -->
+
+        <!-- Modale de confirmation de suppression -->
+        <div
+            id="modalDeleteProduit"
+            style="display: none; background: rgba(0,0,0,0.5);"
+            class="fixed inset-0 z-50 flex items-center justify-center"
+        >
+            <div class="bg-white rounded-xl shadow-lg w-full max-w-lg p-8 relative">
+                <button id="closeDeleteModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <h3 class="text-xl font-bold mb-1">Confirmation</h3>
+                <p class="text-gray-400 mb-6">Voulez-vous vraiment supprimer ce produit&nbsp;?</p>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" id="cancelDeleteBtn" class="px-4 py-2 rounded bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200">Annuler</button>
+                    <button type="button" id="confirmDeleteBtn" class="px-4 py-2 rounded bg-red-500 text-white font-semibold hover:bg-red-600">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+@endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('modalAjoutProduit');
+        const openBtn = document.getElementById('openModalBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const cancelBtn = document.getElementById('cancelModalBtn');
+
+        openBtn.addEventListener('click', function () {
+            modal.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        cancelBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // fermer la modale si on clique à l'extérieur
+        window.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        let formToDelete = null;
+        const modalDelete = document.getElementById('modalDeleteProduit');
+        const closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
+        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+        // Pour chaque formulaire de suppression
+        document.querySelectorAll('.delete-form').forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                formToDelete = form;
+                modalDelete.style.display = 'flex';
+            });
+        });
+
+        closeDeleteModalBtn.addEventListener('click', function () {
+            modalDelete.style.display = 'none';
+            formToDelete = null;
+        });
+
+        cancelDeleteBtn.addEventListener('click', function () {
+            modalDelete.style.display = 'none';
+            formToDelete = null;
+        });
+
+        confirmDeleteBtn.addEventListener('click', function () {
+            if (formToDelete) {
+                modalDelete.style.display = 'none';
+                formToDelete.submit();
+            }
+        });
+
+        // Fermer la modale si on clique à l'extérieur
+        window.addEventListener('click', function (e) {
+            if (e.target === modalDelete) {
+                modalDelete.style.display = 'none';
+                formToDelete = null;
+            }
+        });
+    });
+</script>
+

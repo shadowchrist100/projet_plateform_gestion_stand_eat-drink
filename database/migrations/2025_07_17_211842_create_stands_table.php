@@ -14,10 +14,15 @@ return new class extends Migration
         Schema::create('stands', function (Blueprint $table) {
             $table->id();
             $table->string('nom_stand');
-            $table->string('description');
-            // Clé étrangère vers la table users
+            $table->text('description'); // Utilisez text plutôt que string pour les descriptions longues
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps(); // N'oubliez pas les timestamps
+            
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

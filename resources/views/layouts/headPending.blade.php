@@ -19,13 +19,13 @@
     </style>
 </head>
 <body class="font-sans">
-    @include('partials.header')
+    @include('partials.headerPending')
 
     <main>
-        @yield('content')
+        @yield('contentP')
     </main>
 
-    @include('partials.footer')
+    
     <script>
         lucide.createIcons();
     </script>
