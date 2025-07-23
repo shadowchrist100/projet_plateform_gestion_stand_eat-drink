@@ -23,10 +23,17 @@
                         <p>
                             Bienvenue,Administrateur
                         </p>
-                        <a class="btn btn-ghost text-base font-medium  btn-signin" routerLink="/contact">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="btn btn-ghost text-base font-medium  btn-signin" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+                                Se déconnecter
+                            </button>
+                        </form>
+                        {{-- <a class="btn btn-ghost text-base font-medium  btn-signin" routerLink="/contact">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
                             Déconnexion
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </header>
@@ -50,7 +57,7 @@
                             </svg>
                         </div>
                     <div class="mt-2">
-                        <div class="text-2xl font-bold text-orange-600">3</div>
+                        <div class="text-2xl font-bold text-orange-600">{{ $unapproved->count() }}</div>
                             <p class="text-xs text-base-content/70">demandes à traiter</p>
                         </div>
                     </div>
@@ -66,7 +73,7 @@
                             </svg>
                         </div>
                         <div class="mt-2">
-                            <div class="text-2xl font-bold text-green-600">0</div>
+                            <div class="text-2xl font-bold text-green-600">{{ $unapproved->count() }}</div>
                             <p class="text-xs text-base-content/70">stands actifs</p>
                         </div>
                     </div>
@@ -102,7 +109,7 @@
                             </svg>
                         </div>
                         <div class="mt-2">
-                            <div class="text-2xl font-bold text-blue-600">3</div>
+                            <div class="text-2xl font-bold text-blue-600">{{ $approved->concat($unapproved)->count() }}</div>
                             <p class="text-xs text-base-content/70">demandes totales</p>
                         </div>
                     </div>
@@ -225,10 +232,77 @@
                                                         @method('POST')
 
                                                     </form>
-                                                    
                                                     <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3 text-red-600 hover:text-red-700">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                                                     </button>
+                                                    <dialog id="reject_modal" class="modal">
+                                                        <div class="modal-box max-w-2xl">
+                                                            <h3 class="font-bold text-lg mb-4">Rejet de la demande</h3>
+                                                            
+                                                            <div class="grid grid-cols-1 gap-4">
+                                                                <!-- Informations utilisateur -->
+                                                                <div class="bg-base-200 p-4 rounded-lg">
+                                                                    <h4 class="font-medium mb-2">Demande de :</h4>
+                                                                    <div class="grid grid-cols-2 gap-2 text-sm">
+                                                                        <div>
+                                                                            <span class="text-gray-500">Nom :</span>
+                                                                            <span>{{ $user->nom_complet }}</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <span class="text-gray-500">Entreprise :</span>
+                                                                            <span>{{ $user->nom_entreprise }}</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <span class="text-gray-500">Email :</span>
+                                                                            <span>{{ $user->email }}</span>
+                                                                        </div>
+                                                                        <div>
+                                                                            <span class="text-gray-500">Type :</span>
+                                                                            <span>{{ $user->type_activite }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Formulaire de rejet -->
+                                                                <form method="POST" action="{{ route('unapproved_user', $demande->id) }}">
+                                                                    @csrf
+                                                                    <div class="form-control w-full">
+                                                                        <label class="label" for="reject_reason">
+                                                                            <span class="label-text">Raison du rejet</span>
+                                                                            <span class="label-text-alt text-error">* Obligatoire</span>
+                                                                        </label>
+                                                                        <select id="reject_reason" name="reason" class="select select-bordered w-full" required>
+                                                                            <option value="" disabled selected>Sélectionnez une raison</option>
+                                                                            <option value="incomplet">Dossier incomplet</option>
+                                                                            <option value="critères">Ne répond pas aux critères</option>
+                                                                            <option value="capacité">Capacité maximale atteinte</option>
+                                                                            <option value="autre">Autre raison</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    
+                                                                    <div id="custom_reason_container" class="form-control w-full mt-3 hidden">
+                                                                        <label class="label" for="custom_reason">
+                                                                            <span class="label-text">Précisez la raison</span>
+                                                                        </label>
+                                                                        <textarea id="custom_reason" name="custom_reason" class="textarea textarea-bordered h-24" placeholder="Détails..."></textarea>
+                                                                    </div>
+                                                                    
+                                                                    <div class="modal-action">
+                                                                        <button type="button" onclick="document.getElementById('reject_modal').close()" class="btn btn-ghost">
+                                                                            Annuler
+                                                                        </button>
+                                                                        <button type="submit" class="btn btn-error">
+                                                                            Confirmer le rejet
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Fermer en cliquant à l'extérieur -->
+                                                        <form method="dialog" class="modal-backdrop">
+                                                            <button>close</button>
+                                                        </form>
+                                                    </dialog>
                                                 </div>
                                             </td>
                                         </tr>
@@ -324,5 +398,10 @@
         document.getElementById('show').addEventListener('click', function() {
             document.getElementById('stand_modal').showModal();
         });
+
+        document.getElementById('reject_reason').addEventListener('change', function() {
+        const customReasonContainer = document.getElementById('custom_reason_container');
+        customReasonContainer.classList.toggle('hidden', this.value !== 'autre');
+    });
     </script>
 </html>

@@ -36,8 +36,16 @@ class DashboardController extends Controller
         $user=User::find($id);
         $user->status='approved';
         $user->approved_at=now();
+        $user->updated_at=now();
         $user->role='entrepreneur_approuve';
         $user->save();
-         return redirect()->back()->with('success', 'Utilisateur approuvé');
+    }
+
+    public function unapproved(Request $request , $id)
+    {
+        $user=User::find($id);
+        $user->status='unapproved';
+        $user->updated_at=now();
+        $user->save();
     }
 }
