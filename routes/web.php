@@ -30,6 +30,7 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
 
 Route::get('/admin', [DashboardController::class, 'dashboard']);
+Route::post('/approved/{id}',[DashboardController::class, 'approved'])->name('approved_user');
 
 
 // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

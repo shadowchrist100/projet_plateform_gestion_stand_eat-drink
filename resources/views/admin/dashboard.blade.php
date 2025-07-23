@@ -119,123 +119,135 @@
                 </div>
                 <div class="p-6 pt-0">
                     <div class="relative w-full overflow-auto">
-                        <table class="w-full caption-bottom text-sm">
-                            <thead class="[&_tr]:border-b border-base-200">
-                                <tr class="bg-base-100 border-b border-base-200">
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Entrepreneur</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Entreprise</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Type</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Date</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="[&_tr:last-child]:border-0">
-                                @forelse ($unapproved as $user)
-                                    <tr class="border-b border-base-200 transition-colors hover:bg-base-200/50 active:bg-base-200">
-                                        <td class="h-12 align-middle text-left [&:has([role=checkbox])]:pr-0 p-4">
-                                            <div>
-                                                <div class="font-medium">
-                                                    {{ $user->nom_complet }}
+                        @if (isset($unapproved) && $unapproved->isNotEmpty())
+                            <table class="w-full caption-bottom text-sm">
+                                <thead class="[&_tr]:border-b border-base-200">
+                                    <tr class="bg-base-100 border-b border-base-200">
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Entrepreneur</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Entreprise</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Type</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Date</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="[&_tr:last-child]:border-0">
+                                    @forelse ($unapproved as $user)
+                                        <tr class="border-b border-base-200 transition-colors hover:bg-base-200/50 active:bg-base-200">
+                                            <td class="h-12 align-middle text-left [&:has([role=checkbox])]:pr-0 p-4">
+                                                <div>
+                                                    <div class="font-medium">
+                                                        {{ $user->nom_complet }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">
+                                                        {{ $user->email }}
+                                                    </div>
+                                                <div>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                    {{ $user->nom_entreprise }}
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="inline-flex items-center rounded-full border-b border-base-200 px-2.5 py-0.5 focus:ring-offset-2">
+                                                    {{ $user->type_activite }}
                                                 </div>
-                                                <div class="text-sm text-gray-500">
-                                                    {{ $user->email }}
-                                                </div>
-                                            <div>
-                                        </td>
-                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                                {{ $user->nom_entreprise }}
-                                        </td>
-                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                            <div class="inline-flex items-center rounded-full border-b border-base-200 px-2.5 py-0.5 focus:ring-offset-2">
-                                                {{ $user->type_activite }}
-                                            </div>
-                                        </td>
-                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                            {{ $user->created_at->format('Y-m-d') }}
-                                        </td>
-                                        <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                            <div class="flex space-x-2">
-                                                <button  id="show" class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-                                                </button>
-                                                <!-- Fenêtre modale -->
-                                                <dialog id="stand_modal" class="modal">
-                                                    <div class="modal-box max-w-2xl">
-                                                        <h3 class="font-bold text-lg mb-4">Informations du Stand</h3>
-                                                        
-                                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                            <!-- Colonne 1 -->
-                                                            <div>
-                                                                <div class="mb-3">
-                                                                    <label class="block text-sm font-medium text-gray-500">Nom</label>
-                                                                    <p class="mt-1 text-sm">{{ $user->nom_complet }} </p>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                {{ $user->created_at->format('Y-m-d') }}
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="flex space-x-2">
+                                                    <button  id="show" class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                                                    </button>
+                                                    <!-- Fenêtre modale -->
+                                                    <dialog id="stand_modal" class="modal">
+                                                        <div class="modal-box max-w-2xl">
+                                                            <h3 class="font-bold text-lg mb-4">Informations du Stand</h3>
+                                                            
+                                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                <!-- Colonne 1 -->
+                                                                <div>
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Nom</label>
+                                                                        <p class="mt-1 text-sm">{{ $user->nom_complet }} </p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Email</label>
+                                                                        <p class="mt-1 text-sm"> {{ $user->email }} </p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Téléphone</label>
+                                                                        <p class="mt-1 text-sm"> {{ $user->telephone }}</p>
+                                                                    </div>
                                                                 </div>
                                                                 
-                                                                <div class="mb-3">
-                                                                    <label class="block text-sm font-medium text-gray-500">Email</label>
-                                                                    <p class="mt-1 text-sm"> {{ $user->email }} </p>
-                                                                </div>
-                                                                
-                                                                <div class="mb-3">
-                                                                    <label class="block text-sm font-medium text-gray-500">Téléphone</label>
-                                                                    <p class="mt-1 text-sm"> {{ $user->telephone }}</p>
+                                                                <!-- Colonne 2 -->
+                                                                <div>
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Entreprise</label>
+                                                                        <p class="mt-1 text-sm">{{ $user->nom_entreprise }}</p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Type</label>
+                                                                        <p class="mt-1 text-sm">{{ $user->type_activite }}</p>
+                                                                    </div>
+                                                                    
                                                                 </div>
                                                             </div>
                                                             
-                                                            <!-- Colonne 2 -->
-                                                            <div>
-                                                                <div class="mb-3">
-                                                                    <label class="block text-sm font-medium text-gray-500">Entreprise</label>
-                                                                    <p class="mt-1 text-sm">{{ $user->nom_entreprise }}</p>
-                                                                </div>
-                                                                
-                                                                <div class="mb-3">
-                                                                    <label class="block text-sm font-medium text-gray-500">Type</label>
-                                                                    <p class="mt-1 text-sm">{{ $user->type_activite }}</p>
-                                                                </div>
-                                                                
+                                                            <!-- Description (pleine largeur) -->
+                                                            <div class="mt-4">
+                                                                <label class="block text-sm font-medium text-gray-500">Description</label>
+                                                                <p class="mt-1 text-sm">{{ $user->description_activite }}</p>
+                                                            </div>
+                                                            
+                                                            <div class="modal-action">
+                                                                <form method="dialog">
+                                                                    <button class="btn">Fermer</button>
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                        
-                                                        <!-- Description (pleine largeur) -->
-                                                        <div class="mt-4">
-                                                            <label class="block text-sm font-medium text-gray-500">Description</label>
-                                                            <p class="mt-1 text-sm">{{ $user->description_activite }}</p>
-                                                        </div>
-                                                        
-                                                        <div class="modal-action">
-                                                            <form method="dialog">
-                                                                <button class="btn">Fermer</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Fermer en cliquant à l'extérieur -->
-                                                    <form method="dialog" class="modal-backdrop">
-                                                        <button>close</button>
+                                                        <!-- Fermer en cliquant à l'extérieur -->
+                                                        <form method="dialog" class="modal-backdrop">
+                                                            <button>close</button>
+                                                        </form>
+                                                    </dialog>
+                                                    <a href="{{ route('approved_user',['id'=>$user->id]) }}" onclick="event.preventDefault(); document.getElementById('approved_form-{{ $user->id }}').submit()">
+                                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3 text-green-600 hover:text-green-700">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                                        </button>
+                                                    </a>
+                                                    <form id="approved_form-{{ $user->id }}" action="{{ route('approved_user',['id'=>$user->id]) }}" method="POST" style="display:none;">
+                                                        @csrf
+                                                        @method('POST')
+
                                                     </form>
-                                                </dialog>
-                                                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3 text-green-600 hover:text-green-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-                                                </button>
-                                                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3 text-red-600 hover:text-red-700">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                     <div class="p-6 pt-0">
-                                        <p class="text-center text-gray-500 py-8">
-                                            Aucune demande en attente
-                                        </p>
-                                    </div>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                                    
+                                                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3 text-red-600 hover:text-red-700">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="p-6 pt-0">
+                                <p class="text-center text-gray-500 py-8">
+                                    Aucune demande en attente
+                                </p>
+                            </div>    
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="rounded-lg border-b border-base-200 bg-card text-base-content shadow-sm">
+            <div class="rounded-lg bg-base-100 border-b border-base-200 shadow-sm text-base-content shadow-sm">
                 <div class="flex flex-col space-y-1.5 p-6">
                     <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check text-green-500"><path d="M20 6 9 17l-5-5"/></svg>
@@ -271,24 +283,24 @@
                                             <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
                                                 <div>
                                                     <div class="font-medium">
-
+                                                        {{ $user->nom_complet }}
                                                     </div>
                                                     <div class="text-sm text-gray-500">
-
+                                                        {{ $user->email }}
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                                
+                                                {{ $user->nom_entreprise }}
                                             </td>
                                             <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-ring focus:ring-offset-2 text-foreground">
-
+                                                <div class="inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 focus:ring-2 focus:ring-offset-2 text-base-content">
+                                                    {{ $user->type_activite }}
                                                 </div>
                                             </td>
                                             <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 transparent bg-secondary hover:bg-secondary/80 text-green-600">
-
+                                                <div class="inline-flex items-center rounded-full border border-transparent  hover:bg-secondary-focus text-[#16a34a]">
+                                                    {{ $user->status }}
                                                 </div>
                                             </td>
                                         </tr>
