@@ -24,9 +24,9 @@
 
       <!-- Email -->
       <div>
-        <label class="block font-semibold mb-1 text-gray-900" for="email">Email</label>
+        <label class="block font-semibold mb-1 text-black" for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="votre@email.com"
-               class="input input-bordered w-full @error('email') input-error @enderror">
+               class="input input-bordered w-full text-black  bg-white border border-gray-300 @error('email') input-error @enderror">
         @error('email')
           <span class="text-xs text-red-500">{{ $message }}</span>
         @enderror
@@ -36,7 +36,7 @@
         <label class="block font-semibold mb-1 text-gray-900" for="password">Mot de passe</label>
         <div class="relative">
           <input type="password" name="password" id="password" placeholder="Votre mot de passe"
-                 class="input input-bordered w-full pr-10 @error('password') input-error @enderror">
+                 class="input input-bordered w-full pr-10 text-black bg-white border border-gray-300 @error('password') input-error @enderror">
           <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
