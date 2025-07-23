@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -23,7 +23,24 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($validated)) 
         {
-            return redirect()->route('pending-approval');
+            $email=$request->input('email');
+            $user = User::where('email', $email)->first();
+            if ($user) 
+            {
+                if ($user->status=='pending') 
+                {
+                    return redirect()->route('pending-approval');
+                }
+                else if($user->status=='approved')
+                {
+                    return redirect('/entrepreneur');
+                }
+                else if($user->role='admin')
+                {
+                    return redirect()->route('admin.dashboard');
+                }
+            }
+            
         }
         else
         {

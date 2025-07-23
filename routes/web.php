@@ -29,8 +29,9 @@ Route::post('/logout', [LoginController::class, 'logout'])
      ->name('logout');
 
 
-Route::get('/admin', [DashboardController::class, 'dashboard']);
+Route::get('/admin', [DashboardController::class, 'dashboard'])->middleware('auth')->name('admin.dashboard');
 Route::post('/approved/{id}',[DashboardController::class, 'approved'])->name('approved_user');
+Route::post('/unapproved/{id}',[DashboardController::class, 'Admin\DashboardController@unapproved'])->name('unapproved_user');
 
 
 // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
