@@ -11,9 +11,12 @@
          
         </div>
         <div class="flex items-center space-x-6">
-            <span class="text-gray-500">Bienvenue, Jean Dupont</span>
-            <form method="POST" action="#">
-                <button type="button" class="flex items-center px-4 py-2 border border-gray-200 rounded-lg font-bold hover:bg-gray-50 transition">
+            <span class="text-gray-500">Bienvenue cher entrepreneur</span>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                    class="flex items-center px-4 py-2 border border-gray-200 rounded-lg font-bold hover:bg-gray-50
+                           transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
                     <svg class="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7"/>
                     </svg>

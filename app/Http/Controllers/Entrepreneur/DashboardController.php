@@ -11,7 +11,7 @@ class DashboardController
     public function index()
     {
         if (Auth::user()->role !== 'entrepreneur_approuve') {
-            abort(403, 'Accès refusé');
+           return redirect()->route('pending-approval');
         }
 
         $user = Auth::user();

@@ -73,7 +73,7 @@
                             <td class="py-3">0 franc CFA</td>
                             <td class="py-3">
                                 <div class="flex space-x-2">
-                                    <!-- Actions (modifier/supprimer) -->
+                                    
                                 </div>
                             </td>
                         </tr>

@@ -38,9 +38,12 @@ Route::get('/admin', [DashboardController::class, 'dashboard']);
 // Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 // Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
-Route::get('/entrepreneur',function(){
-    return view('entrepreneur.dashboard');
-});
+Route::get('/entrepreneur', [ProduitController::class, 'listProduits']);
+
+// Route::get('/entrepreneur', function () {
+//     return view('entrepreneur.dashboard');
+// })->name('dashboard');
+
 // Routes exposants simplifiées
 Route::prefix('exposants')->group(function() {
     // Liste des exposants avec recherche intégrée
@@ -64,3 +67,4 @@ Route::post('/logout', function () {
 Route::get('/auth/pending', function () {
     return view('auth.pending');
 })->name('pending-approval');
+

@@ -10,13 +10,19 @@ use Illuminate\Support\Facades\Auth;
 class ProduitController extends Controller
 {
     // Affiche la liste des produits de l'entrepreneur connecté
-    public function index()
-    {
-        $user = Auth::user();
-        $produits = Produit::where('user_id', $user->id)->get();
+    // public function index()
+    // {
+    //     $user = Auth::user();
+    //     $produits = Produit::where('user_id', $user->id)->get();
 
-        return view('entrepreneur.produits.index', compact('produits'));
-    }
+    //     return view('entrepreneur.produits.index', compact('produits'));
+    // }
+
+    public function listProduits(){
+        $produits = Produit::all();
+        dd($produits);  
+    //    return view('entrepreneur.dashboard', compact('produits'));
+}
 
     // Affiche le formulaire de création d'un produit
     public function create()
@@ -31,7 +37,8 @@ class ProduitController extends Controller
             'nom' => 'required',
             'description' => 'nullable',
             'prix' => 'required|numeric',
-            'image_url' => 'nullable|image|max:2048', // max 2Mo
+            // 'image_url' => 'nullable|image|max:2048', // max 2Mo
+            // 'stand_id'=> 'required'
         ]);
 
         $imagePath = null;
@@ -43,9 +50,9 @@ class ProduitController extends Controller
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
-            'image_url' => $imagePath,
+            // 'image_url' => $imagePath,
             // 'user_id' => auth()->id(), // si besoin
-            // 'stand_id' => ... // selon ta logique
+            //  'stand_id' => $request-> stand_id
         ]);
 
         return redirect()->route('entrepreneur.dashboard')->with('success', 'Produit ajouté avec succès !');

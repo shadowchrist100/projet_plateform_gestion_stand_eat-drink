@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Produit extends Model
 {
+
+    // protected $table = produits ;
     protected $fillable = [
+
         'nom',
         'description',
         'prix',
