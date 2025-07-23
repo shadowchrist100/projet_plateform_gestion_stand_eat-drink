@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -28,5 +29,15 @@ class DashboardController extends Controller
     {
         $users=User::pendingEntrepreneurs()->get();
         return $users;
+    }
+
+    public function approved(Request $request , $id)
+    {
+        $user=User::find($id);
+        $user->status='approved';
+        $user->approved_at=now();
+        $user->role='entrepreneur_approuve';
+        $user->save();
+         return redirect()->back()->with('success', 'Utilisateur approuvé');
     }
 }

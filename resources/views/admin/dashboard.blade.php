@@ -112,102 +112,142 @@
             <div class="rounded-lg bg-base-100 border-b border-base-200 shadow-sm mb-8">
                 <div class="flex flex-col space-y-1.5 p-6">
                     <h3 class="text-2xl font-semibold flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock text-orange-500"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
                         Demandes en attente d'approbation
                     </h3>
                     <p class="text-sm text-base-content/70">gérer les nouvelles demandes de stand des entrepreneurs</p>
                 </div>
                 <div class="p-6 pt-0">
                     <div class="relative w-full overflow-auto">
-                        <table class="w-full caption-bottom text-sm">
-                            <thead class="">
-                                <tr class="bg-base-100 border-b border-base-200">
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Entrepreneur</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Entreprise</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Type</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Date</th>
-                                    <th class="h-12 px-4 text-left align-middle font-medium ">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="">
-                                <tr class="bg-base-100 border-b border-base-200">
-                                    <td class="">
-                                        <div>
-                                            <div class="font-medium">
-                                                Marc Dubois
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                mar@charcuteri.com
-                                            </div>
-                                        <div>
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                            Charcuterie Dubois
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-offset-2">
-                                            charcuterie
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                        2024-02-16
-                                    </td>
-                                    <td class="p-4 align-middle ">
-                                        <div class="flex space-x-2">
-                                            <button class="btn btn-ghost btn-sm p-2  hover:text-info hover:bg-info/10">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent h-9 rounded-md px-3 text-green-600 hover:text-green-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent g-accent h-9 rounded-md px-3 text-red-600 hover:text-red-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        <div>
-                                            <div class="font-medium">
-                                                Marc Dubois
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                mar@charcuteri.com
-                                            </div>
-                                        <div>
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                            Charcuterie Dubois
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 focus:ring-offset-2">
-                                            charcuterie
-                                        </div>
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        2024-02-16
-                                    </td>
-                                    <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                                        <div class="flex space-x-2">
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-now:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent h-9 rounded-md px-3 text-green-600 hover:text-green-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
-                                            </button>
-                                            <button class="inline-flex items-center justify-center gap-2 whitespace-nowcent g-accent h-9 rounded-md px-3 text-red-600 hover:text-red-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @if (isset($unapproved) && $unapproved->isNotEmpty())
+                            <table class="w-full caption-bottom text-sm">
+                                <thead class="[&_tr]:border-b border-base-200">
+                                    <tr class="bg-base-100 border-b border-base-200">
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Entrepreneur</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Entreprise</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Type</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Date</th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium ">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="[&_tr:last-child]:border-0">
+                                    @forelse ($unapproved as $user)
+                                        <tr class="border-b border-base-200 transition-colors hover:bg-base-200/50 active:bg-base-200">
+                                            <td class="h-12 align-middle text-left [&:has([role=checkbox])]:pr-0 p-4">
+                                                <div>
+                                                    <div class="font-medium">
+                                                        {{ $user->nom_complet }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">
+                                                        {{ $user->email }}
+                                                    </div>
+                                                <div>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                    {{ $user->nom_entreprise }}
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="inline-flex items-center rounded-full border-b border-base-200 px-2.5 py-0.5 focus:ring-offset-2">
+                                                    {{ $user->type_activite }}
+                                                </div>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                {{ $user->created_at->format('Y-m-d') }}
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="flex space-x-2">
+                                                    <button  id="show" class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                                                    </button>
+                                                    <!-- Fenêtre modale -->
+                                                    <dialog id="stand_modal" class="modal">
+                                                        <div class="modal-box max-w-2xl">
+                                                            <h3 class="font-bold text-lg mb-4">Informations du Stand</h3>
+                                                            
+                                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                <!-- Colonne 1 -->
+                                                                <div>
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Nom</label>
+                                                                        <p class="mt-1 text-sm">{{ $user->nom_complet }} </p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Email</label>
+                                                                        <p class="mt-1 text-sm"> {{ $user->email }} </p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Téléphone</label>
+                                                                        <p class="mt-1 text-sm"> {{ $user->telephone }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Colonne 2 -->
+                                                                <div>
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Entreprise</label>
+                                                                        <p class="mt-1 text-sm">{{ $user->nom_entreprise }}</p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="mb-3">
+                                                                        <label class="block text-sm font-medium text-gray-500">Type</label>
+                                                                        <p class="mt-1 text-sm">{{ $user->type_activite }}</p>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <!-- Description (pleine largeur) -->
+                                                            <div class="mt-4">
+                                                                <label class="block text-sm font-medium text-gray-500">Description</label>
+                                                                <p class="mt-1 text-sm">{{ $user->description_activite }}</p>
+                                                            </div>
+                                                            
+                                                            <div class="modal-action">
+                                                                <form method="dialog">
+                                                                    <button class="btn">Fermer</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Fermer en cliquant à l'extérieur -->
+                                                        <form method="dialog" class="modal-backdrop">
+                                                            <button>close</button>
+                                                        </form>
+                                                    </dialog>
+                                                    <a href="{{ route('approved_user',['id'=>$user->id]) }}" onclick="event.preventDefault(); document.getElementById('approved_form-{{ $user->id }}').submit()">
+                                                        <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3 text-green-600 hover:text-green-700">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                                        </button>
+                                                    </a>
+                                                    <form id="approved_form-{{ $user->id }}" action="{{ route('approved_user',['id'=>$user->id]) }}" method="POST" style="display:none;">
+                                                        @csrf
+                                                        @method('POST')
+
+                                                    </form>
+                                                    
+                                                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap  hover:text-accent-content h-9 rounded-btn px-3 text-red-600 hover:text-red-700">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="p-6 pt-0">
+                                <p class="text-center text-gray-500 py-8">
+                                    Aucune demande en attente
+                                </p>
+                            </div>    
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="rounded-lg bg-base-100 border-b border-base-200 shadow-sm text-base-content shadow-sm">
                 <div class="flex flex-col space-y-1.5 p-6">
                     <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check text-green-500"><path d="M20 6 9 17l-5-5"/></svg>
@@ -218,11 +258,71 @@
                     </p>
                 </div>
                 <div class="p-6 pt-0">
-                    <p class="text-center text-gray-500 py-8">
-                        Aucun exposant approuvé
-                    </p>
+                    @if (isset($approved) && $approved->isNotEmpty())
+                        <div class="relative w-full overflow-auto">
+                            <table class="w-full caption-button text-sm">
+                                <thead class="[&_tr]:border-b">
+                                    <tr class="border-b border-base-200 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Entrepreneur
+                                        </th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Entreprise
+                                        </th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Type
+                                        </th>
+                                        <th class="h-12 px-4 text-left align-middle font-medium  text-base-content/70 [&:has([role=checkbox]):pr-0]">
+                                            Statut
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="[&_tr:last-child]:border-0">
+                                    @forelse ($approved as $user )
+                                        <tr class="border-b border-base-200 transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div>
+                                                    <div class="font-medium">
+                                                        {{ $user->nom_complet }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">
+                                                        {{ $user->email }}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                {{ $user->nom_entreprise }}
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 focus:ring-2 focus:ring-offset-2 text-base-content">
+                                                    {{ $user->type_activite }}
+                                                </div>
+                                            </td>
+                                            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+                                                <div class="inline-flex items-center rounded-full border border-transparent  hover:bg-secondary-focus text-[#16a34a]">
+                                                    {{ $user->status }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        
+                                    @endforelse
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <p class="text-center text-gray-500 py-8">
+                            Aucun exposant approuvé
+                        </p>
+                    @endif
                 </div>
             </div>
         </div>
     </body>
+    <script>
+        document.getElementById('show').addEventListener('click', function() {
+            document.getElementById('stand_modal').showModal();
+        });
+    </script>
 </html>
