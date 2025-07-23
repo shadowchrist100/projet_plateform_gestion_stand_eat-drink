@@ -27,7 +27,7 @@ class LoginController extends Controller
             $user = User::where('email', $email)->first();
             if ($user) 
             {
-                if ($user->status=='pending') 
+                if ($user->status=='pending' && $user->role='') 
                 {
                     return redirect()->route('pending-approval');
                 }
