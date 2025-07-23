@@ -52,7 +52,7 @@
 
       <div>
         <label class="block font-semibold mb-1 text-gray-900" for="description_activite">Description de votre activité *</label>
-        <textarea name="description_activite" id="description_activite" class="textarea w-full h-28 bg-white border border-gray-300" placeholder="Décrivez votre activité, vos spécialités, ce que vous proposerez sur votre stand..." required></textarea>
+        <textarea name="description_activite" id="description_activite" class="textarea w-full h-28 bg-white border border-gray-300 text-black" placeholder="Décrivez votre activité, vos spécialités, ce que vous proposerez sur votre stand..." required></textarea>
       </div>
 
       <input type="hidden" name="role" value="exposant">

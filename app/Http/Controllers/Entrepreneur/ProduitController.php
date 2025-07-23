@@ -19,9 +19,11 @@ class ProduitController extends Controller
     // }
 
     public function listProduits(){
+        // $produits = Produit::where('user_id', $user->id)->get(); //Un long commentaire
         $produits = Produit::all();
-        dd($produits);  
-    //    return view('entrepreneur.dashboard', compact('produits'));
+        $totalProduits = $produits->count();
+        $prixMoyen = $totalProduits > 0 ? $produits->avg('prix') : 0;
+       return view('entrepreneur.dashboard', compact('produits','totalProduits','prixMoyen'));  
 }
 
     // Affiche le formulaire de création d'un produit
@@ -33,12 +35,15 @@ class ProduitController extends Controller
     // Enregistre un nouveau produit
     public function store(Request $request)
     {
+        $stand_id = 2;
+        $user_id = 2;
+        
         $request->validate([
             'nom' => 'required',
             'description' => 'nullable',
             'prix' => 'required|numeric',
             // 'image_url' => 'nullable|image|max:2048', // max 2Mo
-            // 'stand_id'=> 'required'
+             'stand_id'=> 'required'
         ]);
 
         $imagePath = null;
@@ -51,8 +56,8 @@ class ProduitController extends Controller
             'description' => $request->description,
             'prix' => $request->prix,
             // 'image_url' => $imagePath,
-            // 'user_id' => auth()->id(), // si besoin
-            //  'stand_id' => $request-> stand_id
+            'user_id' => $user_id, // si besoin
+              'stand_id' => $stand_id
         ]);
 
         return redirect()->route('entrepreneur.dashboard')->with('success', 'Produit ajouté avec succès !');

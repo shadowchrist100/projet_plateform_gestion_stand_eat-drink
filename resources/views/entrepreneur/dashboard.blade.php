@@ -20,7 +20,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V7a2 2 0 00-2-2H6a2 2 0 00-2 2v6m16 0v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0H4"/>
                     </svg>
                 </div>
-                <div class="text-3xl font-bold mt-4">0</div>
+                <div class="text-3xl font-bold mt-4"> {{ $totalProduits }} </div>
                 <div class="text-gray-400 text-sm">produits disponibles</div>
             </div>
             <div class="bg-white rounded-xl shadow p-6 flex flex-col">
@@ -28,7 +28,7 @@
                     <span class="text-gray-500 font-medium">Prix Moyen</span>
                     <span class="text-gray-300 text-xl font-bold">franc CFA</span>
                 </div>
-                <div class="text-3xl font-bold mt-4">0,00 franc CFA</div>
+                <div class="text-3xl font-bold mt-4"> {{$prixMoyen }} franc CFA</div>
                 <div class="text-gray-400 text-sm">par produit</div>
             </div>
             <div class="bg-white rounded-xl shadow p-6 flex flex-col">
@@ -67,16 +67,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="py-3 font-semibold">Exemple produit</td>
-                            <td class="py-3">Description exemple</td>
-                            <td class="py-3">0 franc CFA</td>
-                            <td class="py-3">
-                                <div class="flex space-x-2">
-                                    
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach($produits as $produit)
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-3 font-semibold"> {{ $produit->nom }} </td>
+                                <td class="py-3">{{ $produit->description }}</td>
+                                <td class="py-3">{{ $produit->prix }}</td>
+                                <td class="py-3">
+                                    <div class="flex space-x-2">
+                                        <button>modifier</button>
+                                        <button>supprimer</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
