@@ -18,17 +18,11 @@ return new class extends Migration
             $table->decimal('prix', 8, 2); // Meilleur pour les valeurs monétaires
             $table->string('image_url')->nullable();
             $table->unsignedBigInteger('stand_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             
-            $table->foreign('stand_id')
-                ->references('id')
-                ->on('stands')
-                ->onDelete('cascade');
-            $table->text('description')->nullable();
-            $table->decimal('prix', 8, 2);
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('stand_id')->references('id')->on('stands')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

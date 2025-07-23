@@ -28,16 +28,24 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'prix' => 'required|numeric|min:0',
+            'nom' => 'required',
+            'description' => 'nullable',
+            'prix' => 'required|numeric',
+            'image_url' => 'nullable|image|max:2048', // max 2Mo
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('produits', 'public');
+        }
 
         Produit::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'prix' => $request->prix,
-            // 'user_id' => Auth::id(), // 
+            'image_url' => $imagePath,
+            // 'user_id' => auth()->id(), // si besoin
+            // 'stand_id' => ... // selon ta logique
         ]);
 
         return redirect()->route('entrepreneur.dashboard')->with('success', 'Produit ajouté avec succès !');
