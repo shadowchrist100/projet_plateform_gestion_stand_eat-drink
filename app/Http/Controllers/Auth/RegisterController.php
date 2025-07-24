@@ -50,7 +50,7 @@ class RegisterController extends Controller
             'description_activite' => $data['description_activite'],
             'role' => 'entrepreneur_en_attente',
             'status' => 'pending',
-            'image' => $data['stand_image'] ?? null,
+            'stand_img' => $data['stand_img'] ?? null,
         ]);
     }
 
@@ -61,17 +61,14 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        // Gère l'upload ici
+        $standImgPath = null;
         if ($request->hasFile('stand_image')) {
-            $standImagePath = $request->file('stand_image')->store('stands', 'public');
-        } else {
-            $standImagePath = null;
+            $standImgPath = $request->file('stand_image')->store('stands', 'public');
         }
 
-        // Passe le chemin de l'image à create()
         $user = $this->create(array_merge(
             $request->all(),
-            ['stand_image' => $standImagePath]
+            ['stand_img' => $standImgPath]
         ));
 
         // Envoi de la notification de bienvenue
